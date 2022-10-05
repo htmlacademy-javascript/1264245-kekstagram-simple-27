@@ -8,9 +8,13 @@ function getRandomInteger(min, max) {
 
 
 function checkStringLength(string, length) {
-  if (string.length === length) {
-    return true;
+  if (typeof string === "string" && typeof length === "number") {
+    if (string.length <= length) {
+      return true;
+    }
+    return false;
   }
-  return false;
+  console.log("Please type correct number or string");
 }
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
