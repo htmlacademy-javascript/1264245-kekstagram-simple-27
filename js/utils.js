@@ -1,11 +1,11 @@
 function checkStringLength(string, length) {
-  if (typeof string === "string" && typeof length === "number") {
+  if (typeof string === 'string' && typeof length === 'number') {
     if (string.length <= length) {
       return true;
     }
     return false;
   }
-  console.log('Please type correct number or string');
+  return Symbol;
 }
 
 const getRandomPositiveInteger = (a, b) => {
@@ -18,4 +18,4 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
-export {getRandomPositiveInteger};
+export {getRandomPositiveInteger, checkStringLength};
