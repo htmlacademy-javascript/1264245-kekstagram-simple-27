@@ -14,4 +14,4 @@ const makePhotoDescription = (index) => ({
 
 const makeGalleyPhotos = Array.from({length: GALLERY_LENGTH}, (_, index) => makePhotoDescription(index));
 
-export {makeGalleyPhotos};
+export {makeGalleyPhotos, makePhotoDescription};
