@@ -1,3 +1,5 @@
 import {makeGalleyPhotos} from './object-creation.js';
+import './draw-thumbnails';
 
-console.log(makeGalleyPhotos());
+
+makeGalleyPhotos();
