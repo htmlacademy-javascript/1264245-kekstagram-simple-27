@@ -1,5 +1,3 @@
-import {makeGalleyPhotos} from './object-creation.js';
-import './draw-thumbnails';
+import './draw-thumbnails.js';
+import './form.js';
 
-
-makeGalleyPhotos();
