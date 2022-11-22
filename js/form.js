@@ -1,5 +1,7 @@
+import {setDefaultSize} from './scale-operations.js';
+
 const uploadFileIcon = document.querySelector('#upload-file');
-const imgUplOvr = document.querySelector('.img-upload__overlay');
+const imageUploadForm = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -18,14 +20,16 @@ const onPopupEscKeydown = (evt) => {
 };
 
 function closeModal() {
-  imgUplOvr.classList.add('hidden');
+  imageUploadForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keyDown', onPopupEscKeydown);
   uploadFileIcon.value = '';
+  form.reset();
+  // setDefaultSize();
 }
 
 uploadFileIcon.addEventListener('click', () => {
-  imgUplOvr.classList.remove('hidden');
+  imageUploadForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscKeydown);
 });
