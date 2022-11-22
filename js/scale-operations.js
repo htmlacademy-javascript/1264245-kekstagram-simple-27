@@ -2,7 +2,6 @@ const decreaseButton = document.querySelector('.scale__control--smaller');
 const increaseButton = document.querySelector('.scale__control--bigger');
 const scaleValueElement = document.querySelector('.scale__control--value');
 const imagePreviewElement = document.querySelector('.img-upload__preview');
-const effectsListElement = document.querySelector('.effects__list');
 
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
@@ -10,7 +9,7 @@ const SCALE_STEP = 25;
 const DEFAULT_SCALE = 100;
 let currentScaleValue;
 
-const setDefaultSize = () => {
+const setImageDefaultSize = () => {
   scaleValueElement.value = `${DEFAULT_SCALE}%`;
   imagePreviewElement.style.transform = `scale(${scaleValueElement.value / 100})`;
 };
@@ -35,10 +34,4 @@ decreaseButton.addEventListener('click', () => {
   imagePreviewElement.style.transform = `scale(${currentValue / 100})`;
 });
 
-effectsListElement.addEventListener('change', (evt) => {
-  const effectName = evt.target.value;
-  imagePreviewElement.removeAttribute('class');
-  imagePreviewElement.classList.add('img-upload__preview',`effects__preview--${effectName}`);
-});
-
-export {setDefaultSize, currentScaleValue};
+export {setImageDefaultSize, currentScaleValue, imagePreviewElement};

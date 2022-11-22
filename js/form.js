@@ -1,5 +1,3 @@
-import {setDefaultSize} from './scale-operations.js';
-
 const uploadFileIcon = document.querySelector('#upload-file');
 const imageUploadForm = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
@@ -25,7 +23,6 @@ function closeModal() {
   document.removeEventListener('keyDown', onPopupEscKeydown);
   uploadFileIcon.value = '';
   form.reset();
-  // setDefaultSize();
 }
 
 uploadFileIcon.addEventListener('click', () => {
