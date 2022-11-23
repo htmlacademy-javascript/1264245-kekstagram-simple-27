@@ -1,15 +1,17 @@
+const picturesContainer = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureFragment = document.createDocumentFragment();
 
-function createThumbnails(makeGalleyPhotos) {
-  const containerValue = document.querySelector('#picture').content.querySelector('.picture');
-  const containerElement = containerValue.cloneNode(true);
-  const thumbnailsFragment = document.createDocumentFragment();
-
-  makeGalleyPhotos.forEach((url, likes, comments) => {
-    containerElement.querySelector('.picture__img').src = url;
-    containerElement.querySelector('.picture__likes').textContent = likes;
-    containerElement.querySelector('.picture__comments').textContent = comments;
-    return thumbnailsFragment.append(containerElement);
+const createThumbnails = (pictures) => {
+  pictures.forEach(({url,likes,comments}) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = url;
+    pictureElement.querySelector('.picture__likes').textContent = likes;
+    pictureElement.querySelector('.picture__comments').textContent = comments.length;
+    pictureFragment.appendChild(pictureElement);
   });
-}
+
+  picturesContainer.appendChild(pictureFragment);
+};
 
 export {createThumbnails};
