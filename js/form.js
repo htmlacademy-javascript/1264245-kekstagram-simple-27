@@ -16,31 +16,33 @@ const pristineConfig = {
 };
 const pristine = new Pristine(form, pristineConfig);
 
-const onPopupEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeModal();
-  }
-};
-
-function closeModal() {
+const closeModal = () => {
   imageUploadForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keyDown', onPopupEscKeydown);
   uploadFileIcon.value = '';
   form.reset();
-}
+};
 
-uploadFileIcon.addEventListener('click', () => {
+const scrollBar = document.querySelector('.img-upload__effect-level');
+
+const openModal = () => {
   imageUploadForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  scrollBar.classList.add('hidden');
   document.addEventListener('keydown', onPopupEscKeydown);
   setImageDefaultSize();
-});
+};
 
-cancelButton.addEventListener('click', () => {
-  closeModal();
-});
+function onPopupEscKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeModal();
+  }
+}
+
+uploadFileIcon.addEventListener('change', openModal);
+cancelButton.addEventListener('click',closeModal);
 
 const disableSubmitButton = () => {
   submitButton.textContent = 'Идёт отправка';
