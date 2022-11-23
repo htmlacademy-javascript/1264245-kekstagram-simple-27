@@ -1,4 +1,5 @@
 const ALERT_SHOW_TIME = 10000;
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 function checkStringLength(string, length) {
   if (typeof string === 'string' && typeof length === 'number') {
@@ -39,4 +40,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomPositiveInteger, checkStringLength, showAlert};
+export {getRandomPositiveInteger, checkStringLength, showAlert, isEscapeKey};

@@ -7,3 +7,4 @@ effectsListElement.addEventListener('change', (evt) => {
   imagePreviewElement.removeAttribute('class');
   imagePreviewElement.classList.add('img-upload__preview',`effects__preview--${effectName}`);
 });
+

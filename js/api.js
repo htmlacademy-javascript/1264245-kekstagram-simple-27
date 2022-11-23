@@ -19,4 +19,21 @@ const getData = (onSuccess) => {
     });
 };
 
-export { getData };
+const sendData = (onSuccess, onFail, body) => {
+  fetch(PHOTO_SERVER_URL,
+    {
+      method: 'POST',
+      body,
+    },
+  )
+    .then((responce) => {
+      if (responce.ok) {
+        onSuccess();
+        return;
+      }
+      onFail();
+    })
+    .catch(() => onFail());
+};
+
+export { getData, sendData };

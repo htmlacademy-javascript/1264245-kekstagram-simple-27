@@ -1,13 +1,12 @@
+let currentScaleValue;
 const decreaseButton = document.querySelector('.scale__control--smaller');
 const increaseButton = document.querySelector('.scale__control--bigger');
 const scaleValueElement = document.querySelector('.scale__control--value');
 const imagePreviewElement = document.querySelector('.img-upload__preview');
-
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const SCALE_STEP = 25;
 const DEFAULT_SCALE = 100;
-let currentScaleValue;
 
 const setImageDefaultSize = () => {
   scaleValueElement.value = `${DEFAULT_SCALE}%`;
