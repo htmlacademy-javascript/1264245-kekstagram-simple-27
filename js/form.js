@@ -8,6 +8,8 @@ const cancelButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const submitButton = document.querySelector('.img-upload__submit');
+const scrollBar = document.querySelector('.img-upload__effect-level');
+
 
 const pristineConfig = {
   classTo: 'img-upload__text',
@@ -22,9 +24,16 @@ const closeModal = () => {
   document.removeEventListener('keyDown', onPopupEscKeydown);
   uploadFileIcon.value = '';
   form.reset();
+  console.log('test');
 };
 
-const scrollBar = document.querySelector('.img-upload__effect-level');
+
+const onPopupEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeModal();
+  }
+}
 
 const openModal = () => {
   imageUploadForm.classList.remove('hidden');
@@ -34,15 +43,10 @@ const openModal = () => {
   setImageDefaultSize();
 };
 
-function onPopupEscKeydown (evt) {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeModal();
-  }
-}
 
 uploadFileIcon.addEventListener('change', openModal);
 cancelButton.addEventListener('click',closeModal);
+// succesCloseButton.addEventListener('click',closeModal);
 
 const disableSubmitButton = () => {
   submitButton.textContent = 'Идёт отправка';
@@ -54,7 +58,14 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const setUserFormSubmit = (onSuccess, onFail) => {
+const onCloseButtonClick = () => {
+  document.querySelector('.success__button').addEventListener('click', () => {
+    closeModal();
+  });
+  console.log(document.querySelector('.success__button'));
+};
+
+const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
@@ -67,7 +78,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
           unblockSubmitButton();
         },
         () => {
-          onFail();
+          // onFail();
           showErrorMessage();
           unblockSubmitButton();
         },
@@ -77,4 +88,4 @@ const setUserFormSubmit = (onSuccess, onFail) => {
   });
 };
 
-export {setUserFormSubmit};
+export {setUserFormSubmit, closeModal};

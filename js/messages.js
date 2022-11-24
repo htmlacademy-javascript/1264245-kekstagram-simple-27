@@ -35,6 +35,7 @@ const showSuccessMessage = () => {
   document.addEventListener('click', closeMessage);
   bodyElement.appendChild(successMessage);
   bodyElement.style.overflow = 'hidden';
+  console.log('test2');
 };
 
 export {showErrorMessage, showSuccessMessage};
