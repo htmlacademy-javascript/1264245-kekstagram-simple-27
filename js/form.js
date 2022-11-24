@@ -2,6 +2,7 @@ import { setDefaultScaleAndSize } from './scale-operations.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './messages.js';
 import {isEscapeKey} from './utils.js';
+import {deleteEffect} from './effects.js';
 
 const uploadFileIcon = document.querySelector('#upload-file');
 const imageUploadForm = document.querySelector('.img-upload__overlay');
@@ -38,6 +39,7 @@ const openModal = () => {
   scrollBar.classList.add('hidden');
   document.addEventListener('keydown', onPopupEscKeydown);
   setDefaultScaleAndSize();
+  deleteEffect();
 };
 
 uploadFileIcon.addEventListener('change', openModal);

@@ -7,3 +7,10 @@ effectsListElement.addEventListener('change', (evt) => {
   imagePreviewElement.classList.add('img-upload__preview',`effects__preview--${effectName}`);
 });
 
+export const deleteEffect = () => {
+  imagePreviewElement.removeAttribute('class');
+  imagePreviewElement.classList.add('img-upload__preview','effects__preview--none');
+
+
+
+};
