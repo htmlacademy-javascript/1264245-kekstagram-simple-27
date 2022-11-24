@@ -1,12 +1,12 @@
 import { setDefaultScaleAndSize } from './scale-operations.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './messages.js';
+import {isEscapeKey} from './utils.js';
 
 const uploadFileIcon = document.querySelector('#upload-file');
 const imageUploadForm = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
-const isEscapeKey = (evt) => evt.key === 'Escape';
 const submitButton = document.querySelector('.img-upload__submit');
 const scrollBar = document.querySelector('.img-upload__effect-level');
 
