@@ -1,4 +1,4 @@
-import { setImageDefaultSize } from './scale-operations.js';
+import { setDefaultScaleAndSize } from './scale-operations.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './messages.js';
 
@@ -9,7 +9,6 @@ const form = document.querySelector('.img-upload__form');
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const submitButton = document.querySelector('.img-upload__submit');
 const scrollBar = document.querySelector('.img-upload__effect-level');
-
 
 const pristineConfig = {
   classTo: 'img-upload__text',
@@ -40,7 +39,7 @@ const openModal = () => {
   document.body.classList.add('modal-open');
   scrollBar.classList.add('hidden');
   document.addEventListener('keydown', onPopupEscKeydown);
-  setImageDefaultSize();
+  setDefaultScaleAndSize();
 };
 
 

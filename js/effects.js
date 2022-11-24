@@ -1,6 +1,5 @@
-import { imagePreviewElement } from './scale-operations.js';
-
 const effectsListElement = document.querySelector('.effects__list');
+const imagePreviewElement = document.querySelector('.img-upload__preview');
 
 effectsListElement.addEventListener('change', (evt) => {
   const effectName = evt.target.value;
