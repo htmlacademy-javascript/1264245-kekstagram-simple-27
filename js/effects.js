@@ -10,7 +10,4 @@ effectsListElement.addEventListener('change', (evt) => {
 export const deleteEffect = () => {
   imagePreviewElement.removeAttribute('class');
   imagePreviewElement.classList.add('img-upload__preview','effects__preview--none');
-
-
-
 };
