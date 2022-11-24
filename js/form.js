@@ -23,11 +23,9 @@ const closeModal = () => {
   document.removeEventListener('keyDown', onPopupEscKeydown);
   uploadFileIcon.value = '';
   form.reset();
-  console.log('test');
 };
 
-
-const onPopupEscKeydown = (evt) => {
+function onPopupEscKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModal();
@@ -42,10 +40,8 @@ const openModal = () => {
   setDefaultScaleAndSize();
 };
 
-
 uploadFileIcon.addEventListener('change', openModal);
 cancelButton.addEventListener('click',closeModal);
-// succesCloseButton.addEventListener('click',closeModal);
 
 const disableSubmitButton = () => {
   submitButton.textContent = 'Идёт отправка';
@@ -55,13 +51,6 @@ const disableSubmitButton = () => {
 const unblockSubmitButton = () => {
   submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
-};
-
-const onCloseButtonClick = () => {
-  document.querySelector('.success__button').addEventListener('click', () => {
-    closeModal();
-  });
-  console.log(document.querySelector('.success__button'));
 };
 
 const setUserFormSubmit = (onSuccess) => {
@@ -77,7 +66,6 @@ const setUserFormSubmit = (onSuccess) => {
           unblockSubmitButton();
         },
         () => {
-          // onFail();
           showErrorMessage();
           unblockSubmitButton();
         },
