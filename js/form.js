@@ -1,13 +1,15 @@
-import { setImageDefaultSize } from './scale-operations.js';
+import { setDefaultScaleAndSize } from './scale-operations.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './messages.js';
+import {isEscapeKey} from './utils.js';
+import {deleteEffect} from './effects.js';
 
 const uploadFileIcon = document.querySelector('#upload-file');
 const imageUploadForm = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
-const isEscapeKey = (evt) => evt.key === 'Escape';
 const submitButton = document.querySelector('.img-upload__submit');
+const scrollBar = document.querySelector('.img-upload__effect-level');
 
 const pristineConfig = {
   classTo: 'img-upload__text',
@@ -24,22 +26,21 @@ const closeModal = () => {
   form.reset();
 };
 
-const scrollBar = document.querySelector('.img-upload__effect-level');
-
-const openModal = () => {
-  imageUploadForm.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  scrollBar.classList.add('hidden');
-  document.addEventListener('keydown', onPopupEscKeydown);
-  setImageDefaultSize();
-};
-
 function onPopupEscKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModal();
   }
 }
+
+const openModal = () => {
+  imageUploadForm.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  scrollBar.classList.add('hidden');
+  document.addEventListener('keydown', onPopupEscKeydown);
+  setDefaultScaleAndSize();
+  deleteEffect();
+};
 
 uploadFileIcon.addEventListener('change', openModal);
 cancelButton.addEventListener('click',closeModal);
@@ -54,7 +55,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const setUserFormSubmit = (onSuccess, onFail) => {
+const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
@@ -67,7 +68,6 @@ const setUserFormSubmit = (onSuccess, onFail) => {
           unblockSubmitButton();
         },
         () => {
-          onFail();
           showErrorMessage();
           unblockSubmitButton();
         },
@@ -77,4 +77,4 @@ const setUserFormSubmit = (onSuccess, onFail) => {
   });
 };
 
-export {setUserFormSubmit};
+export {setUserFormSubmit, closeModal};
