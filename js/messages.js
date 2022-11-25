@@ -7,32 +7,32 @@ const bodyElement = document.querySelector('body');
 const onMessageEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeMessage();
+    onCloseMessage();
   }
 };
 
-function closeMessage () {
+function onCloseMessage () {
   const message = document.querySelector('.error') || document.querySelector('.success');
   message.remove();
   document.removeEventListener('keydown', onMessageEscKeydown);
-  document.removeEventListener('click', closeMessage);
+  document.removeEventListener('click', onCloseMessage);
   bodyElement.style.overflow = 'auto';
 }
 
 const showErrorMessage = () => {
   const errorMessage = errorMessageTemplate.cloneNode(true);
-  errorMessage.querySelector('.error__button').addEventListener('click', closeMessage);
+  errorMessage.querySelector('.error__button').addEventListener('click', onCloseMessage);
   document.addEventListener('keydown', onMessageEscKeydown);
-  document.addEventListener('click', closeMessage);
+  document.addEventListener('click', onCloseMessage);
   bodyElement.appendChild(errorMessage);
   bodyElement.style.overflow = 'hidden';
 };
 
 const showSuccessMessage = () => {
   const successMessage = successMessageTemplate.cloneNode(true);
-  successMessage.querySelector('.success__button').addEventListener('click', closeMessage);
+  successMessage.querySelector('.success__button').addEventListener('click', onCloseMessage);
   document.addEventListener('keydown', onMessageEscKeydown);
-  document.addEventListener('click', closeMessage);
+  document.addEventListener('click', onCloseMessage);
   bodyElement.appendChild(successMessage);
   bodyElement.style.overflow = 'hidden';
 };
