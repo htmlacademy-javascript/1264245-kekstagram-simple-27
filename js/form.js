@@ -18,7 +18,7 @@ const pristineConfig = {
 };
 const pristine = new Pristine(form, pristineConfig);
 
-const closeModal = () => {
+const onCloseModal = () => {
   imageUploadForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keyDown', onPopupEscKeydown);
@@ -27,13 +27,14 @@ const closeModal = () => {
 };
 
 function onPopupEscKeydown (evt) {
-  if (isEscapeKey(evt)) {
+  const errorModalElement = document.querySelector('.error');
+  if (isEscapeKey(evt) && !errorModalElement) {
     evt.preventDefault();
-    closeModal();
+    onCloseModal();
   }
 }
 
-const openModal = () => {
+const onOpenModal = () => {
   imageUploadForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   scrollBar.classList.add('hidden');
@@ -42,8 +43,8 @@ const openModal = () => {
   deleteEffect();
 };
 
-uploadFileIcon.addEventListener('change', openModal);
-cancelButton.addEventListener('click',closeModal);
+uploadFileIcon.addEventListener('change', onOpenModal);
+cancelButton.addEventListener('click',onCloseModal);
 
 const disableSubmitButton = () => {
   submitButton.textContent = 'Идёт отправка';
@@ -77,4 +78,4 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-export {setUserFormSubmit, closeModal};
+export {setUserFormSubmit, onCloseModal};
