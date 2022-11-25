@@ -1,26 +1,6 @@
 const ALERT_SHOW_TIME = 10000;
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-function checkStringLength(string, length) {
-  if (typeof string === 'string' && typeof length === 'number') {
-    if (string.length <= length) {
-      return true;
-    }
-    return false;
-  }
-  return Symbol;
-}
-
-const getRandomPositiveInteger = (a, b) => {
-  if (a < 0 || b < 0) {
-    return NaN;
-  }
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -40,4 +20,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomPositiveInteger, checkStringLength, showAlert, isEscapeKey};
+export {showAlert, isEscapeKey};
